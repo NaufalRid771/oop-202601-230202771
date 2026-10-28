@@ -79,8 +79,15 @@ public class Aset implements DapatDipinjam {
         throw new UnsupportedOperationException("TODO minggu 3");
     }
 
-    /** TODO minggu 4: denda keterlambatan. Dioverride tiap subclass (aturan di docs/aturan-bisnis.md). */
+    /** Denda keterlambatan standar aset; subclass dapat mengubah multiplier-nya. */
     public long hitungDenda(int hariTerlambat) {
-        throw new UnsupportedOperationException("TODO minggu 4");
+        return hitungDendaDenganMultiplier(hariTerlambat, 1);
+    }
+
+    protected final long hitungDendaDenganMultiplier(int hariTerlambat, int multiplier) {
+        if (hariTerlambat < 0) {
+            throw new IllegalArgumentException("hari terlambat tidak boleh negatif");
+        }
+        return (long) hariTerlambat * multiplier * id.ac.upb.asetpinjam.config.Varian.aktif().dendaPerHari;
     }
 }
