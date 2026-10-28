@@ -1,0 +1,23 @@
+@startuml
+title Sequence Diagram Pengajuan Peminjaman
+actor Peminjam
+participant "JadwalPeminjaman" as Jadwal
+participant "Peminjaman" as Pengajuan
+participant "Aset" as Aset
+
+Peminjam -> Pengajuan: buat objek pengajuan(id, peminjam, aset, mulai, selesai)
+Pengajuan -> Pengajuan: validasi data wajib dan rentang waktu
+Peminjam -> Jadwal: ajukan(pengajuan)
+Jadwal -> Jadwal: bentrok(pengajuan)
+alt tidak bentrok (sukses)
+  Jadwal -> Jadwal: tambah(pengajuan)
+  Jadwal --> Peminjam: pengajuan tercatat
+else bentrok
+  Jadwal --> Peminjam: lempar PeminjamanBentrokException
+end
+note right of Jadwal
+  bentrok() dan ajukan() telah dideklarasikan
+  pada JadwalPeminjaman; implementasinya
+merupakan tugas minggu 7 dan 9.
+end note
+@enduml
