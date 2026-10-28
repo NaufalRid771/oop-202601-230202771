@@ -27,4 +27,11 @@ Salin setiap pertanyaan ambigu (nomor 1 sampai 7) ke sini dan jawab. Contoh:
 
 ## Asumsi lain
 
+## A-08: rumus denda progresif
+- Pertanyaan: Bagaimana kenaikan denda progresif ditentukan?
+- Keputusan: Hari pertama sama dengan denda flat; setiap hari berikutnya menaikkan total denda sebesar 10% dari denda flat untuk jumlah hari tersebut. Rumusnya `flat × (100 + 10 × (hari - 1)) / 100`, dibulatkan ke bawah ke rupiah penuh.
+- Alasan: Rumus ini sederhana, tidak pernah lebih rendah dari flat, tidak turun ketika hari bertambah, dan pada hari ke-30 lebih besar dari flat.
+- Dampak ke kode: `DendaProgresif.hitung()`.
+- Tes yang membuktikan: `Minggu05AbstraksiTest.dendaProgresifMemenuhiSyaratMinimal`.
+
 Tambahkan di sini keputusan lain yang Anda ambil: rumus denda progresif, perubahan skema database, format error API, dan seterusnya.
